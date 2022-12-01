@@ -17,20 +17,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class Customer {
-	@Id
-	@Column
-	private String custNo;
+    @Id
+    @Column
+    private String custNo;
 
-	@Column
-	private String firstName;
+    @Column
+    private String firstName;
 
-	@Column
-	private String lastName;
+    @Column
+    private String lastName;
 
-	public static class CustomerBuilder {
-		public CustomerBuilder withDefaultValue() {
-			this.firstName = "DEFAULT_FIRST_NAME";
-			return this;
-		}
-	}
+    public static class CustomerBuilder {
+        public CustomerBuilder withDefaultValue() {
+            this.firstName = "DEFAULT_FIRST_NAME";
+            return this;
+        }
+    }
 }

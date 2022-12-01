@@ -14,68 +14,68 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest
 public class LombokTests {
 
-	@Autowired
-	private CustomerRepoitory customerRepoitory;
+    @Autowired
+    private CustomerRepoitory customerRepoitory;
 
-	@Test
-	void lombokToBuilderTest() {
+    @Test
+    void lombokToBuilderTest() {
 
-		Customer customer1 = Customer.builder()
-			.custNo("1")
-			.firstName("John")
-			.lastName("Doe")
-			.build();
+        Customer customer1 = Customer.builder()
+            .custNo("1")
+            .firstName("John")
+            .lastName("Doe")
+            .build();
 
-		Customer customer2 = customer1.toBuilder()
-			.firstName("Simpson")
-			.build();
+        Customer customer2 = customer1.toBuilder()
+            .firstName("Simpson")
+            .build();
 
-		assertNotEquals(customer1.getFirstName(), customer2.getFirstName());
+        assertNotEquals(customer1.getFirstName(), customer2.getFirstName());
 
-	}
+    }
 
-	@Test
-	void lombokDefaultValueTest() {
-		Customer firstNameIsNullCustomer = Customer.builder()
-			.custNo("1")
-			.build();
+    @Test
+    void lombokDefaultValueTest() {
+        Customer firstNameIsNullCustomer = Customer.builder()
+            .custNo("1")
+            .build();
 
-		Customer firstNameIsDefaultValueCustomer = Customer.builder()
-			.custNo("1")
-			.withDefaultValue()
-			.build();
+        Customer firstNameIsDefaultValueCustomer = Customer.builder()
+            .custNo("1")
+            .withDefaultValue()
+            .build();
 
-		assertNull(firstNameIsNullCustomer.getFirstName());
-		assertNotNull(firstNameIsDefaultValueCustomer.getFirstName());
+        assertNull(firstNameIsNullCustomer.getFirstName());
+        assertNotNull(firstNameIsDefaultValueCustomer.getFirstName());
 
-		String firstName = "myFirstName";
-		Customer customer1 = Customer.builder()
-			.firstName(firstName)
-			.withDefaultValue()
-			.build();
-		assertEquals(firstName, customer1.getFirstName());
-		Customer customer2 = Customer.builder()
-			.withDefaultValue()
-			.firstName(firstName)
-			.build();
-		assertNotEquals(firstName, customer2.getFirstName());
-	}
+        String firstName = "myFirstName";
+        Customer customer1 = Customer.builder()
+            .firstName(firstName)
+            .withDefaultValue()
+            .build();
+        assertEquals(firstName, customer1.getFirstName());
+        Customer customer2 = Customer.builder()
+            .withDefaultValue()
+            .firstName(firstName)
+            .build();
+        assertNotEquals(firstName, customer2.getFirstName());
+    }
 
-	@Test
-	void jpaAndLombokToBuilderTest() {
+    @Test
+    void jpaAndLombokToBuilderTest() {
 
-		Customer customer1 = Customer.builder()
-			.custNo("1")
-			.firstName("John")
-			.lastName("Doe")
-			.build();
-		customerRepoitory.save(customer1);
-		Customer customer2 = customer1.toBuilder().firstName("Simpson").build();
-		log.debug("customer1.equals(customer2) : {}", customer1.equals(customer2));
+        Customer customer1 = Customer.builder()
+            .custNo("1")
+            .firstName("John")
+            .lastName("Doe")
+            .build();
+        customerRepoitory.save(customer1);
+        Customer customer2 = customer1.toBuilder().firstName("Simpson").build();
+        log.debug("customer1.equals(customer2) : {}", customer1.equals(customer2));
 
-		customerRepoitory.save(customer2);
-		log.debug("customer1.equals(customer2) : {}", customer1.equals(customer2));
+        customerRepoitory.save(customer2);
+        log.debug("customer1.equals(customer2) : {}", customer1.equals(customer2));
 
-	}
+    }
 
 }

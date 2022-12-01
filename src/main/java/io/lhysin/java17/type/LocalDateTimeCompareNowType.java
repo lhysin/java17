@@ -5,17 +5,17 @@ import java.util.function.Predicate;
 
 public enum LocalDateTimeCompareNowType {
 
-	FUTURE((t) -> LocalDateTime.now().compareTo(t) < 0),
-	PAST((t) -> LocalDateTime.now().compareTo(t) > 0);
+    FUTURE((t) -> LocalDateTime.now().compareTo(t) < 0),
+    PAST((t) -> LocalDateTime.now().compareTo(t) > 0);
 
-	private final Predicate<LocalDateTime> predicate;
+    private final Predicate<LocalDateTime> predicate;
 
-	LocalDateTimeCompareNowType(Predicate<LocalDateTime> predicate) {
-		this.predicate = predicate;
-	}
+    LocalDateTimeCompareNowType(Predicate<LocalDateTime> predicate) {
+        this.predicate = predicate;
+    }
 
-	public boolean test(LocalDateTime t) {
-		return this.predicate.test(t);
-	}
+    public boolean test(LocalDateTime t) {
+        return this.predicate.test(t);
+    }
 
 }
