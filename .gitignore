@@ -40,3 +40,7 @@ target
 secrets.yml
 .gradletasknamecache
 .sts4-cache
+gradle.properties
+
+# exlude gradle-wrapper.jar
+!/gradle/wrapper/gradle-wrapper.jar
